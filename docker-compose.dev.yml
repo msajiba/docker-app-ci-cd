@@ -16,8 +16,8 @@ services:
     networks:
       - docker-app-network
     restart: unless-stopped
-    env_file:
-      - .env
+    # env_file:
+    #   - .env
 
 volumes:
   node_modules:
