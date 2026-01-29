@@ -1,13 +1,17 @@
 FROM node:24
 
-RUN npm install -g pnpm@8.15.2
-
 WORKDIR /app
 
-COPY package.json ./
+COPY package*.json ./
 
-RUN pnpm install
+RUN npm install
 
 COPY . .
 
-CMD ["pnpm", "run", "dev"]
+EXPOSE 3000
+
+ENV NODE_ENV=development
+ENV WATCHPACK_POLLING=true
+ENV CHOKIDAR_USEPOLLING=true
+
+CMD ["npx", "next", "dev", "-H", "0.0.0.0", "--webpack"]
